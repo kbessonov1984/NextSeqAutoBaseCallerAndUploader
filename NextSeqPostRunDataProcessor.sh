@@ -1,4 +1,14 @@
 #!/bin/bash
+#title           :NextSeqPostRunDataProcessor.sh
+#description     :This script will basecall raw NextSeq Illumina data and rename resulting FASTQ files for IRIDA Uploader.
+#author		 :Kyrylo Bessonov
+#date            :04 April 2019
+#version         :1.0    
+#usage		 :bash NextSeqPostRunDataProcessor.sh
+#notes           :Tested on Linux system with illumina conda environment containing bcl2fastq basecaller
+#bash_version    :4.2.46(2)-release
+#==============================================================================
+
 echo "###################################################"
 echo "# Welcome to the NextSeq Post-Run Processor v1.0  #"
 echo "###################################################"
