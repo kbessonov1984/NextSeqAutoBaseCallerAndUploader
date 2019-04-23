@@ -30,7 +30,7 @@ else
 fi
 
 echo "Starting basecalling ...."
-runid=$(sbatch -c 16 --mem=32G -p "NMLResearch" -J "NextSeqBasecalling" -o "NextSeqBasecallingLog_${runfolder}.txt" --wrap="bcl2fastq --no-lane-splitting" | grep -oE  "[0-9]+")
+runid=$(sbatch -c 16 --mem=32G -p "NMLResearch" -J "NextSeqBasecalling" -o "NextSeqBasecallingLog_${runfolder}.txt" --wrap="bcl2fastq --no-lane-splitting --sample-sheet *.csv" | grep -oE  "[0-9]+")
 #runid=$(sbatch -c 1 --mem=1G -J "NextSeqBasecalling" -o "NextSeqBasecallingLog_${runfolder}.txt" --wrap="find . -name "*.gz" | grep -oE  "[0-9]+")
 
 
