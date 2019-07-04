@@ -32,6 +32,10 @@ echo "###################################################"
 echo ""
 
 read -p "Re-upload previously basecalled samples for a given project? (Y/N)" user_response
+root_dir=$(pwd) #directory where the script and all results are located
+echo ${root_dir}
+
+
 if [ $user_response == "Y" ];then
 	echo "Current directoy: $(pwd)"
 	echo "Available projects: $(ls -d */ | sed -e 's/\///g')"
@@ -91,14 +95,15 @@ if [ -d "$runfolder" ]; then
 		for file in *.gz;do
 			file_new=$(echo $file | sed -e 's/\(_R[12]_\)/_L001\1/g')
 			mv $file $file_new 
-		done	
+		done
 
 		printf '=%.0s' {1..100} &&  echo ""
 		echo "$(date +"%T"): Basecall run with jobid ${runid} completed generating a total of $(ls ${destination_dir}/*.fastq.gz  | wc -l) fastq.gz files"
 		
 		echo "Running automatic sample upload to IRIDA server in 10s. "
 		sleep 10
-		upload_basecalled_data2IRIDA ${runfolder} #upload data to IRIDA automatically
+
+		cd $root_dir && upload_basecalled_data2IRIDA ${runfolder} #upload data to IRIDA automatically
 		
 	fi
 	echo "------------Run completed-----------------"
